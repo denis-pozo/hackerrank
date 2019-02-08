@@ -1,4 +1,4 @@
-package org.pozopardo.hackerrank;
+package org.pozopardo.hackerrank.basics;
 
 import static org.junit.Assert.assertTrue;
 
