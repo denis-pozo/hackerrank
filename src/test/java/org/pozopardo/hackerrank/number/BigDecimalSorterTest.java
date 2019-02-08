@@ -1,15 +1,9 @@
 package org.pozopardo.hackerrank.number;
 
 import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.pozopardo.hackerrank.regex.TagContentExtractor;
 
-import java.math.BigDecimal;
-
-import static junitparams.JUnitParamsRunner.$;
 import static org.junit.Assert.assertArrayEquals;
 
 @RunWith(JUnitParamsRunner.class)
