@@ -13,24 +13,24 @@ public class TagContentExtractorTest {
 
 
     private static final Object[] getTestStrings() {
-       return $(
-               $("<h1>Nayeem loves counseling</h1>", "Nayeem loves counseling\n"),
-               $("<h1><h1>Sanjay has no watch</h1></h1><par>So wait for a while</par>",
-                       "Sanjay has no watch\nSo wait for a while\n"),
-               $("<Amee>safat codes like a ninja</amee>", "None\n"),
-               $("<h1>some</h1>", "some\n"),
-               $("<h1>had<h1>public</h1></h1>", "public\n"),
-               $("<h1>had<h1>public</h1515></h1>", "None\n"),
-               $("<h1><h1></h1></h1>", "None\n"),
-               $("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", "None\n"),
-               $(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", "None\n"),
-               $("<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>", "None\n"),
-               $("<>hello</>", "None\n"),
-               $("<>hello</><h>dim</h>", "dim\n"),
-               $("<>hello</><h>dim</h>>>>>", "dim\n"),
-               $("<SA premium>Imtiaz has a secret crush</SA premium>",
-                       "Imtiaz has a secret crush\n")
-       );
+       return new Object[]{
+               new Object[]{"<h1>Nayeem loves counseling</h1>", "Nayeem loves counseling\n"},
+               new Object[]{"<h1><h1>Sanjay has no watch</h1></h1><par>So wait for a while</par>",
+                       "Sanjay has no watch\nSo wait for a while\n"},
+               new Object[]{"<Amee>safat codes like a ninja</amee>", "None\n"},
+               new Object[]{"<h1>some</h1>", "some\n"},
+               new Object[]{"<h1>had<h1>public</h1></h1>", "public\n"},
+               new Object[]{"<h1>had<h1>public</h1515></h1>", "None\n"},
+               new Object[]{"<h1><h1></h1></h1>", "None\n"},
+               new Object[]{"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", "None\n"},
+               new Object[]{">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", "None\n"},
+               new Object[]{"<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>", "None\n"},
+               new Object[]{"<>hello</>", "None\n"},
+               new Object[]{"<>hello</><h>dim</h>", "dim\n"},
+               new Object[]{"<>hello</><h>dim</h>>>>>", "dim\n"},
+               new Object[]{"<SA premium>Imtiaz has a secret crush</SA premium>",
+                       "Imtiaz has a secret crush\n"}
+       };
     }
 
     @Test
