@@ -2,7 +2,7 @@ package org.pozopardo.hackerrank.data.structure;
 
 import java.util.*;
 
-public class StudentSort {
+public class StudentRanking {
 
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
