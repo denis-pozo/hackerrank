@@ -63,8 +63,8 @@ public class ArrayGameTest {
 
         int count = 1;
         try{
-            File fileTest = new File("src/main/resources/" + USECASE_FILENAME);
-            File fileResults = new File("src/main/resources/" + RESULTS_FILENAME);
+            File fileTest = new File("src/test/resources/" + USECASE_FILENAME);
+            File fileResults = new File("src/test/resources/" + RESULTS_FILENAME);
 
             Scanner scan = new Scanner(fileTest);
             Scanner scanResults = new Scanner(fileResults);
