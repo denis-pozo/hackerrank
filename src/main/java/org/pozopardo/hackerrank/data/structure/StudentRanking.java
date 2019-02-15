@@ -21,38 +21,18 @@ public class StudentRanking {
         }
 
         Collections.sort(studentList, (student1, student2) -> {
-            if(student1.getCgpa() != student2.getCgpa())
-                return Double.compare(student2.getCgpa(), student1.getCgpa());
+            if(student1.getCGPA() != student2.getCGPA())
+                return Double.compare(student2.getCGPA(), student1.getCGPA());
 
-            if(!student1.getFname().equalsIgnoreCase(student2.getFname()))
-                return student1.getFname().compareTo(student2.getFname());
+            if(!student1.getName().equalsIgnoreCase(student2.getName()))
+                return student1.getName().compareTo(student2.getName());
 
-            return student1.getId() - student2.getId();
+            return student1.getID() - student2.getID();
         });
 
         for(Student st: studentList){
-            System.out.println(st.getFname());
+            System.out.println(st.getName());
         }
     }
 }
 
-class Student{
-    private int id;
-    private String fname;
-    private double cgpa;
-    public Student(int id, String fname, double cgpa) {
-        super();
-        this.id = id;
-        this.fname = fname;
-        this.cgpa = cgpa;
-    }
-    public int getId() {
-        return id;
-    }
-    public String getFname() {
-        return fname;
-    }
-    public double getCgpa() {
-        return cgpa;
-    }
-}

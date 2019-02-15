@@ -1,7 +1,6 @@
 package org.pozopardo.hackerrank.data.structure;
 
 import org.junit.Test;
-import org.pozopardo.hackerrank.array.ArrayGame;
 
 import java.io.File;
 import java.io.FileNotFoundException;
