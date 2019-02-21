@@ -4,7 +4,7 @@ import java.util.*;
 
 
 interface Food {
-    public String getType();
+    String getType();
 }
 
 class Pizza implements Food {

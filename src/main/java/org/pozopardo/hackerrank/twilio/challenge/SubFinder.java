@@ -1,6 +1,5 @@
 package org.pozopardo.hackerrank.twilio.challenge;
 
-
 import java.io.*;
 import java.util.List;
 import java.util.stream.IntStream;

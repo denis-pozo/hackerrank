@@ -1,9 +1,5 @@
 package org.pozopardo.hackerrank.basics;
 
-/**
- * Hello world!
- *
- */
 public class Loops
 {
     public static void main( String[] args )

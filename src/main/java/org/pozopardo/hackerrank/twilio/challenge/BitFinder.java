@@ -2,8 +2,6 @@ package org.pozopardo.hackerrank.twilio.challenge;
 
 import java.io.IOException;
 
-
-
 class BitFinder {
 
     /*

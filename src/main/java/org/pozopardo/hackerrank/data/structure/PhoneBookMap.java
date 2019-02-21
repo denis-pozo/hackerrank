@@ -1,9 +1,7 @@
 package org.pozopardo.hackerrank.data.structure;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.TreeMap;
 
 public class PhoneBookMap {
 

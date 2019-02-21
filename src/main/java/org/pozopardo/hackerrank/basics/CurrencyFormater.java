@@ -1,9 +1,6 @@
 package org.pozopardo.hackerrank.basics;
 import java.util.*;
 import java.text.*;
-import java.math.*;
-import java.util.regex.*;
-import java.io.*;
 
 public class CurrencyFormater {
 

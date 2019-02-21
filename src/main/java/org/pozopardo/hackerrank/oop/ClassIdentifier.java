@@ -1,6 +1,5 @@
 package org.pozopardo.hackerrank.oop;
 
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
