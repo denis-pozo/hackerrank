@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
+/* Solution for advanced challenges: 63 (MD5), 64 (SHA-256) */
 public class Encryptor {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -12,10 +13,10 @@ public class Encryptor {
         String line = in.nextLine();
 
         try {
-            byte [] bytesOfLine = line.getBytes("UTF-8");
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] digestLine = md.digest(bytesOfLine);
-            System.out.println(bytesToHex(digestLine));
+            byte[] encryptedMD5 = encrypt(line, MessageDigest.getInstance("MD5"));
+            byte[] encryptedSHA256 = encrypt(line, MessageDigest.getInstance("SHA-256"));
+            System.out.println(bytesToHex(encryptedMD5));
+            System.out.println(bytesToHex(encryptedSHA256));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
@@ -23,6 +24,11 @@ public class Encryptor {
         }
 
         in.close();
+    }
+
+    public static byte[] encrypt(String str, MessageDigest md) throws UnsupportedEncodingException {
+        byte [] result = md.digest(str.getBytes("UTF-8"));
+        return result;
     }
 
     private static String bytesToHex(byte[] digestLine) {
