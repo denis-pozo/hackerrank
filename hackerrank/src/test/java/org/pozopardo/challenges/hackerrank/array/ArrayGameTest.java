@@ -5,8 +5,7 @@ import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
@@ -16,8 +15,8 @@ import static org.junit.Assert.assertTrue;
 @RunWith(JUnitParamsRunner.class)
 public class ArrayGameTest {
 
-    private static final String USECASE_FILENAME = "test-case-array-game.txt";
-    private static final String RESULTS_FILENAME = "results-test-case-array-game.txt";
+    private static final String USECASE_FILENAME = "/test-case-array-game.txt";
+    private static final String RESULTS_FILENAME = "/results-test-case-array-game.txt";
 
     private static final Object[] getWinningGames() {
         return new Object[]{
@@ -27,7 +26,7 @@ public class ArrayGameTest {
                 new Object[]{new int[]{0, 1, 0, 1, 0, 1}, 2},
                 new Object[]{new int[]{0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1}, 17},
                 new Object[]{new int[]{0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1}, 17},
-                new Object[]{new int[]{0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, 3}
+            new Object[]{new int[]{0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, 3}
         };
     }
 
@@ -62,33 +61,29 @@ public class ArrayGameTest {
     public void expectedResultsFromMatchShouldMatchReal(){
 
         int count = 1;
-        try{
-            File fileTest = new File("src/test/resources/" + USECASE_FILENAME);
-            File fileResults = new File("src/test/resources/" + RESULTS_FILENAME);
 
-            Scanner scan = new Scanner(fileTest);
-            Scanner scanResults = new Scanner(fileResults);
+        InputStream inputTest = getClass().getResourceAsStream(USECASE_FILENAME);
+        InputStream inputResult = getClass().getResourceAsStream(RESULTS_FILENAME);
 
-            int q = scan.nextInt();
-            while (q-- > 0) {
-                int n = scan.nextInt();
-                int leap = scan.nextInt();
+        Scanner scan = new Scanner(inputTest);
+        Scanner scanResults = new Scanner(inputResult);
 
-                int[] game = new int[n];
-                for (int i = 0; i < n; i++) {
-                    game[i] = scan.nextInt();
-                }
-                String expected = scanResults.next("YES|NO");
-                String result = ArrayGame.canWin(leap, game) ? "YES" : "NO";
-                System.out.println(count++ + ": Expected " + expected + " Result " + result);
-                String message = "Game " + game + "\nLeap " + leap;
-                assertEquals(message, expected, result);
+        int q = scan.nextInt();
+        while (q-- > 0) {
+            int n = scan.nextInt();
+            int leap = scan.nextInt();
+
+            int[] game = new int[n];
+            for (int i = 0; i < n; i++) {
+                game[i] = scan.nextInt();
             }
-            scan.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            String expected = scanResults.next("YES|NO");
+            String result = ArrayGame.canWin(leap, game) ? "YES" : "NO";
+            System.out.println(count++ + ": Expected " + expected + " Result " + result);
+            String message = "Game " + game + "\nLeap " + leap;
+            assertEquals(message, expected, result);
         }
-
+        scan.close();
     }
 
 }
