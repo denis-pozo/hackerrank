@@ -1,4 +1,4 @@
-package org.pozopardo.iplytics.proman.model;
+package org.pozopardo.challenges.iplytics.proman.model;
 
 public class Employee {
 

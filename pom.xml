@@ -75,5 +75,6 @@
         <module>twilio</module>
         <module>zalando</module>
         <module>elements-prog-interview</module>
+        <module>iplytics-project-management</module>
     </modules>
 </project>

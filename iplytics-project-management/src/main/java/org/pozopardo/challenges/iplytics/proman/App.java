@@ -1,4 +1,4 @@
-package org.pozopardo.iplytics.proman;
+package org.pozopardo.challenges.iplytics.proman;
 
 /**
  * Hello world!

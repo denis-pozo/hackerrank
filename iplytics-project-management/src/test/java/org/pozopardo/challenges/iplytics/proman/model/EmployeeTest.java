@@ -1,7 +1,6 @@
-package org.pozopardo.iplytics.proman.model;
+package org.pozopardo.challenges.iplytics.proman.model;
 
 import org.junit.Test;
-import org.pozopardo.iplytics.proman.model.Employee;
 
 public class EmployeeTest {
 

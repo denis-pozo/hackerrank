@@ -1,4 +1,4 @@
-package org.pozopardo.iplytics.proman.data;
+package org.pozopardo.challenges.iplytics.proman.data;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;

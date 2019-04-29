@@ -1,4 +1,4 @@
-package org.pozopardo.iplytics.proman.data;
+package org.pozopardo.challenges.iplytics.proman.data;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
