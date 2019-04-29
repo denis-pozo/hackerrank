@@ -1,6 +1,5 @@
-package org.pozopardo.epi.primitive;
+package org.pozopardo.challengeepi.primitive;
 
-import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
