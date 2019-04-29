@@ -1,4 +1,4 @@
-package org.pozopardo.challenges.hackerrank.twilio.challenge;
+package org.pozopardo.challenges.twilio;
 
 import org.junit.Test;
 

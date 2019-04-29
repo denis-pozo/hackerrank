@@ -1,4 +1,4 @@
-package org.pozopardo.challenges.hackerrank.twilio.challenge;
+package org.pozopardo.challenges.twilio;
 
 import java.io.IOException;
 import java.util.*;
