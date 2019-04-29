@@ -13,7 +13,7 @@
     </parent>
 
     <groupId>org.pozopardo.challenges.iplytics.proman</groupId>
-    <artifactId>project-management</artifactId>
+    <artifactId>iplytics-project-management</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <name>Iplytics Challenge - Minimal Project Management Service</name>
