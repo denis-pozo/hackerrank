@@ -1,4 +1,4 @@
-package org.pozopardo.epi.primitive;
+package org.pozopardo.challenges.epi.primitive;
 
 import org.junit.Test;
 

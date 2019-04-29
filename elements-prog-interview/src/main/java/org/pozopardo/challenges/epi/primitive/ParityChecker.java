@@ -1,4 +1,4 @@
-package org.pozopardo.challengeepi.primitive;
+package org.pozopardo.challenges.epi.primitive;
 
 import java.util.HashMap;
 import java.util.Map;
