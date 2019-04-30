@@ -1,7 +1,6 @@
 package org.pozopardo.challenges.iplytics.proman.model;
 
 import org.junit.Test;
-import org.mockito.internal.matchers.Null;
 
 public class EmployeeTest {
 
