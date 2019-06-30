@@ -1,4 +1,4 @@
-package org.pozopardo.challenges.hackerrank.intpreps;
+package org.pozopardo.challenges.hackerrank.intpreps.n26;
 
 import java.io.*;
 import java.text.*;
@@ -35,16 +35,11 @@ public class FindUniqueFirst {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-
         String inputStr = scanner.next();
 
         Character res = findFirstUniqueCharacter(inputStr);
 
-        bufferedWriter.write(String.valueOf(res));
-        bufferedWriter.newLine();
-
-        bufferedWriter.close();
+        System.out.println(res);
 
         scanner.close();
     }
