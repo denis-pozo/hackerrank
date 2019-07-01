@@ -11,32 +11,47 @@ import java.util.regex.*;
 public class NewYearChaos {
 
     // Complete the minimumBribes function below.
+    // The complexity of this algorithm is O(2^n) due to the recursive algorithm
     static void minimumBribes(int[] q) {
         int count = 0;
 
-        for(int i = q.length ; i > 0 ; i--) {
-            int bribes = countBribes(q, i);
-            if (bribes < 0 || bribes > 2) {
+        for (int i = q.length -1 ; i >= 0 ; i--) {
+            int bribes = permute(q, i);
+            if( bribes >= 3) {
                 System.out.println("Too chaotic");
                 return;
-            } else {
-                count += bribes;
             }
+            count += bribes;
         }
+
+//        for (Integer newOrder : q) {
+//            int bribes = newOrder - originalOrder;
+//            if(bribes > 0 && bribes < 3) {
+//                count = count + bribes;
+//            } else if (bribes >= 3){
+//                System.out.println("Too chaotic");
+//                return;
+//            }
+//
+//            originalOrder++;
+//        }
         System.out.println(count);
 
     }
 
-    private static int countBribes(int[] line, int order) {
-        if(line[order-1] == order) return 0;
-        else {
-            for(int i = 0 ; i < line.length ; i++) {
-                if(line[i] == order) {
-                    return line.length-1 - i;
-                }
-            }
+    static int permute(int [] q, int index) {
+        if(index < 0 || index == q.length-1)
+            return 0;
+
+        if(q[index] > q[index+1]) {
+            int current = q[index];
+            int next = q[index+1];
+            q[index + 1] = current;
+            q[index] = next;
+            return 1 + permute(q, ++index);
+        } else {
+            return 0;
         }
-        return -1;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
