@@ -15,7 +15,7 @@ public class NewYearChaos {
     static void minimumBribes(int[] q) {
         int count = 0;
 
-        for (int i = q.length -1 ; i >= 0 ; i--) {
+        for (int i = q.length-1 ; i >= 0 ; i--) {
             int bribes = permute(q, i);
             if( bribes >= 3) {
                 System.out.println("Too chaotic");
