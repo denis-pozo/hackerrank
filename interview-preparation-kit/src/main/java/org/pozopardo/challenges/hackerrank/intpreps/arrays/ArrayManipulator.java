@@ -13,7 +13,10 @@ public class ArrayManipulator {
     // Complete the arrayManipulation function below.
     static long arrayManipulation(int n, int[][] queries) {
         List<Integer> changes = new ArrayList<>();
+        List<Long> values = new ArrayList<>();
+        long max = Long.MIN_VALUE;
         changes.add(0);
+        values.add(0L);
 
         for(int i = 0 ; i < queries.length ; i++) {
             long value = queries[i][2];
@@ -29,20 +32,45 @@ public class ArrayManipulator {
 
             int endOfChangeIndex;
             if(endAt == n-1) {
-                endOfChangeIndex = changes.size();
+                endOfChangeIndex = changes.size()-1;
             } else {
                 endOfChangeIndex = findEndPosition(changes, endAt);
+                addChange(changes, endOfChangeIndex, endAt+1);
             }
-            addChange(changes, endOfChangeIndex, endAt);
+            long result = updateValues(values, firstChangeIndex, endOfChangeIndex, value);
+            if(max < result) max = result;
             System.out.println(changes);
+            System.out.println(values);
         }
-        return 0;
+        return max;
+    }
+
+    private static long updateValues(List<Long> values, int firstChangeIndex, int endOfChangeIndex, long value) {
+        long max = Long.MIN_VALUE;
+
+        for(int i = firstChangeIndex ; i < endOfChangeIndex ; i++) {
+            if(i >= values.size()){
+                long oldValue = values.get(i-1);
+                long newValue = oldValue + value;
+                if(max < newValue) max = newValue;
+                values.add(newValue);
+                values.add(oldValue);
+            } else if (i < values.size()) {
+                long oldValue = values.get(i);
+                long newValue = oldValue + value;
+                if(max < newValue) max = newValue;
+                values.add(i, newValue);
+            }
+        }
+        return max;
     }
 
 
     private static void addChange(List<Integer> changes, int index, int changeAt) {
-        
-        if(index >= changes.size()) {
+
+        if(index > changes.size()) return;
+
+        if(index == changes.size()) {
             changes.add(changeAt);
         } else if(changes.get(index) != changeAt) {
             changes.add(index, changeAt);
