@@ -12,90 +12,28 @@ public class ArrayManipulator {
 
     // Complete the arrayManipulation function below.
     static long arrayManipulation(int n, int[][] queries) {
-        List<Integer> changes = new ArrayList<>();
-        List<Long> values = new ArrayList<>();
-        long max = Long.MIN_VALUE;
-        changes.add(0);
-        values.add(0L);
+        long [] diff = new long[n];
 
-        for(int i = 0 ; i < queries.length ; i++) {
+        for (int i = 0; i < queries.length; i++) {
             long value = queries[i][2];
-            int startAt = queries[i][0] - 1;
-            int endAt = queries[i][1] - 1;
+            int startAt = queries[i][0];
+            int endAt = queries[i][1];
 
-            int firstChangeIndex;
-            if(startAt == 0) firstChangeIndex = 0;
-            else {
-                firstChangeIndex = findStartPosition(changes, startAt);
-            }
-            addChange(changes, firstChangeIndex, startAt);
-
-            int endOfChangeIndex;
-            if(endAt == n-1) {
-                endOfChangeIndex = changes.size()-1;
-            } else {
-                endOfChangeIndex = findEndPosition(changes, endAt);
-                addChange(changes, endOfChangeIndex, endAt+1);
-            }
-            long result = updateValues(values, firstChangeIndex, endOfChangeIndex, value);
-            if(max < result) max = result;
-            System.out.println(changes);
-            System.out.println(values);
+            diff[startAt-1] = diff[startAt-1] + value;
+            if(endAt < n) diff[endAt] = diff[endAt] - value;
+            System.out.println(Arrays.toString(diff));
         }
-        return max;
-    }
 
-    private static long updateValues(List<Long> values, int firstChangeIndex, int endOfChangeIndex, long value) {
         long max = Long.MIN_VALUE;
-
-        for(int i = firstChangeIndex ; i < endOfChangeIndex ; i++) {
-            if(i >= values.size()){
-                long oldValue = values.get(i-1);
-                long newValue = oldValue + value;
-                if(max < newValue) max = newValue;
-                values.add(newValue);
-                values.add(oldValue);
-            } else if (i < values.size()) {
-                long oldValue = values.get(i);
-                long newValue = oldValue + value;
-                if(max < newValue) max = newValue;
-                values.add(i, newValue);
-            }
+        long temp = 0;
+        for(int i = 0 ; i < n ; i++) {
+            temp += diff[i];
+            if(temp > max) max = temp;
         }
         return max;
     }
 
 
-    private static void addChange(List<Integer> changes, int index, int changeAt) {
-
-        if(index > changes.size()) return;
-
-        if(index == changes.size()) {
-            changes.add(changeAt);
-        } else if(changes.get(index) != changeAt) {
-            changes.add(index, changeAt);
-        }
-    }
-
-    private static int findStartPosition(List<Integer> changes, int startAt) {
-        int count = 0;
-        for(Integer index : changes) {
-            if(index >= startAt) {
-                return count;
-            }
-            count++;
-        }
-        return count;
-    }
-
-    private static int findEndPosition(List<Integer> changes, int endAt) {
-        for(int i = changes.size()-1 ; i >= 0 ; i--) {
-            if(changes.get(i) < endAt + 1) {
-                return i + 1;
-            }
-        }
-        return 0;
-    }
     // Complete the arrayManipulation function below.
 //    // Algorithm's time cost O(n^2)
 //    static long arrayManipulation(int n, int[][] queries) {
@@ -119,96 +57,6 @@ public class ArrayManipulator {
 //        }
 //        return max;
 //    }
-
-
-//        List<Long> values = new ArrayList<>();
-//        List<Integer> changes = new ArrayList<>();
-//        Long max = Long.MIN_VALUE;
-//
-//        values.add(0L);
-//        changes.add(0);
-//
-//        for(int i = 0 ; i < queries.length ; i++) {
-//            printArrays(changes, values, n);
-//            long value = queries[i][2];
-//            int startAt = queries[i][0] - 1;
-//            int endAt = queries[i][1] - 1;
-//
-//            int currentPosition = findStartPosition(changes, startAt);
-//
-//            long newValue = 0;
-//            long oldValue = 0;
-//            if(currentPosition >= changes.size()) {
-//                oldValue = changes.get(changes.size()-1);
-//                newValue = value + oldValue;
-//                values.add(newValue);
-//                values.add(oldValue);
-//                changes.add(startAt);
-//                changes.add(endAt+1);
-//                break;
-//            } else if(startAt == changes.get(currentPosition)) {
-//                oldValue = values.remove(currentPosition);
-//                newValue = value + oldValue;
-//                values.add(currentPosition, newValue);
-//            } else if(startAt < changes.get(currentPosition)){
-//                oldValue = values.get(currentPosition-1);
-//                newValue = value + oldValue;
-//                values.add(currentPosition, newValue);
-//                changes.add(currentPosition, startAt);
-//            }
-//            if(newValue > max) max = newValue;
-//
-//            currentPosition++;
-//            boolean updated = false;
-//            if(currentPosition >= changes.size()) {
-//                changes.add(endAt+1);
-//                values.add(oldValue);
-//                updated = true;
-//            }
-//
-//            while (!updated && currentPosition < changes.size()-1) {
-//                if(changes.get(currentPosition)-1 < endAt) {
-//                    oldValue = values.remove(currentPosition);
-//                    newValue = value + oldValue;
-//                    values.add(currentPosition, newValue);
-//                } else if (changes.get(currentPosition)-1 >= endAt) {
-//                    updated = true;
-//                }
-//                if(newValue > max) max = newValue;
-//                currentPosition++;
-//            }
-//        }
-//        return max;
-//    }
-
-//    private static int getNextPosition(List<Integer> changes, int currentPosition, int endAt) {
-//        for(int i = currentPosition ; i < changes.size() ; i++) {
-//            if(changes.get(i)
-//        }
-//
-//    }
-
-
-    private static void printArrays(List<Integer> changes, List<Long> values, int n) {
-        long [] array = new long[n];
-
-        if(changes.size() > 1) {
-            for(int i = 0 ; i < changes.size()-1 ; i++) {
-                fulfillArray(array, changes.get(i), changes.get(i+1), values.get(i));
-            }
-            fulfillArray(array, changes.get(changes.size()-1), n-1, values.get(values.size()-1));
-        }
-
-        System.out.println("Indexes: " + changes);
-        System.out.println("Values: " + values);
-        System.out.println("Resulting array: " + Arrays.toString(array));
-    }
-
-    private static void fulfillArray(long[] array, int startAt, int endAt, long value) {
-        for(int i = startAt ; i < endAt ; i++) {
-            array[i] = value;
-        }
-    }
 
     private static final Scanner scanner = new Scanner(System.in);
 
