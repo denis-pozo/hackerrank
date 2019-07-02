@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ArrayManipulatorTest {
 
-    final static private String USECASE_FILENAME = "/array-manipulation-case7.txt";
+    final static private String USECASE_FILENAME = "/array-manipulation-case2.txt";
 
     @Test
     public void useCaseFromSite(){
