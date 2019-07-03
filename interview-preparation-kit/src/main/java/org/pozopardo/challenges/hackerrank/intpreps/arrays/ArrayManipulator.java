@@ -10,6 +10,12 @@ import java.util.regex.*;
 
 public class ArrayManipulator {
 
+    /* This solution is O(n)
+     * In this solution, only the changes are stored. Only the new values are added to the starting position and
+     * are subtracted after the last position. So, max 2 operations are carried out in every iteration. To recreate the
+     * full array after every modification we just need to add to value at i the previous value i-1
+     */
+
     // Complete the arrayManipulation function below.
     static long arrayManipulation(int n, int[][] queries) {
         long [] diff = new long[n];
@@ -21,7 +27,6 @@ public class ArrayManipulator {
 
             diff[startAt-1] = diff[startAt-1] + value;
             if(endAt < n) diff[endAt] = diff[endAt] - value;
-            System.out.println(Arrays.toString(diff));
         }
 
         long max = Long.MIN_VALUE;
@@ -34,8 +39,8 @@ public class ArrayManipulator {
     }
 
 
-    // Complete the arrayManipulation function below.
-//    // Algorithm's time cost O(n^2)
+//    // This solution is O(n^2)
+//    // Complete the arrayManipulation function below.
 //    static long arrayManipulation(int n, int[][] queries) {
 //        long [] array = new long [n];
 //        long max = Long.MIN_VALUE;
