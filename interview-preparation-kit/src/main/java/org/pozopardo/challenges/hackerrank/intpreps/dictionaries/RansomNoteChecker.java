@@ -11,6 +11,7 @@ import java.util.regex.*;
 public class RansomNoteChecker {
 
     // Complete the checkMagazine function below.
+    // This algorithm is O(n)
     static void checkMagazine(String[] magazine, String[] note) {
         Collection<String> mag = new ArrayList<>(Arrays.asList(magazine));
 
