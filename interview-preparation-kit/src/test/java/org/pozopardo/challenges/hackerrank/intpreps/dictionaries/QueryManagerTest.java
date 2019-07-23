@@ -16,7 +16,7 @@
 //    public void useCaseFromSite() {
 //        long startTime = System.currentTimeMillis();
 //        int [][] queries = loadQueries();
-//        List<Integer> results = QueryManagerPerformance.freqQuery(queries);
+//        List<Integer> results = QueryManager.freqQuery(queries);
 //        long endTime = System.currentTimeMillis();
 //        System.out.println("Duration: " + (endTime - startTime));
 //        int [] expected = loadResults();

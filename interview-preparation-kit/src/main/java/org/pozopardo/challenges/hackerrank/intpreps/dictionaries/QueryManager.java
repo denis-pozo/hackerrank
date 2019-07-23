@@ -2,15 +2,10 @@ package org.pozopardo.challenges.hackerrank.intpreps.dictionaries;
 
 import java.io.*;
 import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
 
-public class QueryManagerPerformance {
+public class QueryManager {
 
     // Complete the freqQuery function below.
     // The complexity of this method is O(n)
@@ -77,7 +72,7 @@ public class QueryManagerPerformance {
 
     public static void main(String[] args) throws IOException {
         String fileName = "/query-manager-case10.txt";
-        InputStream fileStream = QueryManagerPerformance.class.getResourceAsStream(fileName);
+        InputStream fileStream = QueryManager.class.getResourceAsStream(fileName);
         long startTimeTotal = System.currentTimeMillis();
 
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileStream))){
