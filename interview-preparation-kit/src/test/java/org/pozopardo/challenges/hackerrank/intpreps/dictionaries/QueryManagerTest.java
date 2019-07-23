@@ -8,7 +8,6 @@ import java.util.*;
 import static java.util.stream.Collectors.joining;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.pozopardo.challenges.hackerrank.intpreps.dictionaries.QueryManager.freqQuery;
 
 public class QueryManagerTest {
 
@@ -19,7 +18,7 @@ public class QueryManagerTest {
     public void useCaseFromSite() {
         long startTime = System.currentTimeMillis();
         int [][] queries = loadQueries();
-        List<Integer> results = QueryManager.freqQuery(queries);
+        List<Integer> results = QueryManagerPerformance.freqQuery(queries);
         long endTime = System.currentTimeMillis();
         System.out.println("Duration: " + (endTime - startTime));
         int [] expected = loadResults();
