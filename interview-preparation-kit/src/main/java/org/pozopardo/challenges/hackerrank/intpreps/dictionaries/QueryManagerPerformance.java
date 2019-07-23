@@ -12,12 +12,9 @@ import static java.util.stream.Collectors.toList;
 
 public class QueryManagerPerformance {
 
-    private static final int INSERT = 1;
-    private static final int DELETE = 2;
-    private static final int CHECK = 3;
-
     // Complete the freqQuery function below.
-    static List<Integer> freqQuery(int [][] queries) {
+    // The complexity of this method is O(n)
+    static List<Integer> freqQuery(BufferedReader bufferedReader, int q) throws IOException {
         List<Integer> result = new ArrayList<>();
         Map<Integer, Integer> numbers = new HashMap<>();
         Map<Integer, Integer> frequencies = new HashMap<>();
@@ -29,12 +26,16 @@ public class QueryManagerPerformance {
         Integer oldOccurrence;
         Integer newOccurrence;
 
-        for(int [] query : queries) {
-            if(operation == 3 && query[0] == 3 && value == query[1]) {
+        for(int i = 0 ; i < q ; i ++) {
+            String[] query = bufferedReader.readLine().split(" ");
+            int newOperation = Integer.parseInt(query[0]);
+            int newValue = Integer.parseInt(query[1]);
+
+            if(operation == 3 && newOperation == 3 && value == newValue) {
                 result.add(prevRes);
             } else {
-                operation = query[0];
-                value = query[1];
+                operation = newOperation;
+                value = newValue;
 
                 if (operation == 3) {
                     prevRes = frequencies.get(value) == null ? 0 : 1;
@@ -72,84 +73,17 @@ public class QueryManagerPerformance {
         }
 
         return result;
-
-//        Map<Integer, Integer> operationsMap = new HashMap();
-//        Map<Integer, Set<Integer>> frequenciesMap = new HashMap<>();
-//
-//        for(int[] query : queries) {
-//            int operation = query[0];
-//            int value = query[1];
-//
-//            switch (operation) {
-//                case INSERT:
-//                    Integer m = operationsMap.get(value);
-//                    if( m == null) {
-//                        operationsMap.put(value, 1);
-//                        Set<Integer> sampleMap = frequenciesMap.get(1);
-//                        if(sampleMap != null) {
-//                            sampleMap.add(value);
-//                        } else {
-//                            frequenciesMap.put(1, new HashSet(){
-//                                { add(value); }
-//                            });
-//                        }
-//                    } else {
-//                        operationsMap.put(value, ++m);
-//                        frequenciesMap.get(m - 1).remove(value);
-//                        Set<Integer> sampleMap = frequenciesMap.get(m);
-//                        if(sampleMap != null) sampleMap.add(value);
-//                        else {
-//                            frequenciesMap.put(m, new HashSet() {
-//                                { add(value); }
-//                            });
-//                        }
-//                    }
-//                    break;
-//
-//                case DELETE:
-//                    Integer n = operationsMap.get(value);
-//                    if(n == null) break;
-//                    else if(n == 1) {
-//                        operationsMap.remove(value);
-//                        frequenciesMap.get(1).remove(value);
-//                    } else {
-//                        operationsMap.put(value, --n);
-//                        frequenciesMap.get(n + 1).remove(value);
-//                        Set<Integer> sampleMap = frequenciesMap.get(n);
-//                        if(sampleMap != null)
-//                            sampleMap.add(value);
-//                        else {
-//                            frequenciesMap.put(n, new HashSet() {
-//                                { add(value); }
-//                            });
-//                        }
-//                    }
-//                    break;
-//
-//                case CHECK:
-//                    result.add((frequenciesMap.get(value) == null || frequenciesMap.get(value).isEmpty()) ? 0 : 1);
-//                    break;
-//            }
-//        }
-
     }
 
     public static void main(String[] args) throws IOException {
-        String fileName = "/query-manager-case9.txt";
+        String fileName = "/query-manager-case10.txt";
         InputStream fileStream = QueryManagerPerformance.class.getResourceAsStream(fileName);
         long startTimeTotal = System.currentTimeMillis();
 
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileStream))){
             int q = Integer.parseInt(bufferedReader.readLine().trim());
-            int[][] queries = new int[q][2];
-            for(int i = 0 ; i < q ; i++) {
-                String [] query = bufferedReader.readLine().split(" ");
-                queries[i][0] = Integer.parseInt(query[0]);
-                queries[i][1] = Integer.parseInt(query[1]);
-            }
-
             long startTimeMethod = System.currentTimeMillis();
-            List<Integer> ans = freqQuery(queries);
+            List<Integer> ans = freqQuery(bufferedReader, q);
             long endTimeMethod = System.currentTimeMillis();
 
             try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out))) {
