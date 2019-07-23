@@ -1,16 +1,9 @@
 package org.pozopardo.challenges.hackerrank.intpreps.dictionaries;
 
 import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.function.*;
 import java.util.regex.*;
-import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
 
 public class QueryManager {
 
@@ -20,45 +13,59 @@ public class QueryManager {
 
     // Complete the freqQuery function below.
 
-    static List<Integer> freqQuery(List<int[]> queries) {
+    static List<Integer> freqQuery(int[][] queries) {
         List<Integer> result = new ArrayList<>();
         Map<Integer, Integer> numbers = new HashMap<>();
-        Map<Integer, Boolean> frequencies = new HashMap<>();
+        Map<Integer, Integer> frequencies = new HashMap<>();
 
+        int operation = 0;
+        int value = -1;
+        int prevRes = -1;
+        Integer oldFreq;
+        Integer newFreq;
+        Integer oldOccurrence;
+        Integer newOccurrence;
 
         for(int[] query : queries) {
-            int operation = query[0];
-            int value = query[1];
+            if(operation == 3 && query[0] == 3 && value == query[1]) {
+                result.add(prevRes);
+            } else {
+                operation = query[0];
+                value = query[1];
 
-            switch (operation) {
-                case INSERT:
-                    int current = 0;
-                    if(numbers.containsKey(value)) {
-                        current = numbers.get(value);
+                if (operation == 3) {
+                    prevRes = frequencies.get(value) == null ? 0 : 1;
+                    result.add(prevRes);
+
+                } else if ((operation == 2 && numbers.containsKey(value)) || operation == 1) {
+                    oldFreq = numbers.get(value);
+                    oldFreq = oldFreq == null ? 0 : oldFreq;
+                    oldOccurrence = frequencies.get(oldFreq);
+                    oldOccurrence = oldOccurrence == null ? 0 : oldOccurrence;
+
+                    if (operation == 1) {
+                        newFreq = oldFreq + 1;
+                    } else {
+                        newFreq = oldFreq - 1;
                     }
-                    numbers.put(value, ++current);
-                    frequencies.put(current, true);
-                    break;
-                case DELETE:
-                    if(numbers.containsKey(value)) {
-                        current = numbers.get(value);
-                        if (current <= 1) {
-                            numbers.remove(value);
-                            if(!numbers.values().contains(current)) {
-                                frequencies.put(current, false);
-                            }
-                        }
-                        else numbers.put(value, --current);
+
+                    newOccurrence = frequencies.get(newFreq);
+                    newOccurrence = newOccurrence == null ? 0 : newOccurrence;
+
+                    if (newFreq < 1) {
+                        numbers.remove(value);
+                    } else {
+                        numbers.put(value, newFreq);
                     }
-                    break;
-                case CHECK:
-                    if(frequencies.containsKey(value)) result.add(frequencies.get(value) ? 1 : 0);
-                    else result.add(0);
-                    break;
-                default:
-                    break;
+
+                    if ((oldOccurrence - 1) < 1) {
+                        frequencies.remove(oldFreq);
+                    } else {
+                        frequencies.put(oldFreq, oldOccurrence - 1);
+                    }
+                    frequencies.put(newFreq, newOccurrence + 1);
+                }
             }
-
         }
         return result;
     }
@@ -66,27 +73,27 @@ public class QueryManager {
     public static void main(String[] args) throws IOException {
 
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
+            long startTime = System.currentTimeMillis();
             int q = Integer.parseInt(bufferedReader.readLine().trim());
-            List<int[]> queries = new ArrayList<>(q);
-            Pattern p = Pattern.compile("^(\\d+)\\s+(\\d+)\\s*$");
+            int[][] queries = new int[q][2];
+
             for (int i = 0; i < q; i++) {
-                int[] query = new int[2];
-                Matcher m = p.matcher(bufferedReader.readLine());
-                if (m.matches()) {
-                    query[0] = Integer.parseInt(m.group(1));
-                    query[1] = Integer.parseInt(m.group(2));
-                    queries.add(query);
-                }
+                String[] query = bufferedReader.readLine().split(" ");
+                queries[i][0] = Integer.parseInt(query[0]);
+                queries[i][1] = Integer.parseInt(query[1]);
             }
 
             List<Integer> ans = freqQuery(queries);
+
+            long endTime = System.currentTimeMillis();
 
             try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out))) {
                 bufferedWriter.write(
                         ans.stream()
                                 .map(Object::toString)
                                 .collect(joining("\n"))
-                                + "\n");
+                                + "\n"
+                                + "Duration: " + (endTime - startTime) + "\n");
             }
         }
     }
