@@ -1,4 +1,4 @@
-package org.pozopardo.challenges.hackerrank.intpreps.tomtom;
+package org.pozopardo.challenges.hackerrank.intpreps.tomtom.pretest;
 
 import java.util.*;
 
