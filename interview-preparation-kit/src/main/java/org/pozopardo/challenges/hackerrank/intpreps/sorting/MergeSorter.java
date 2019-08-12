@@ -42,7 +42,7 @@ public class MergeSorter {
     }
 
     public static void main(String[] args) {
-        int [] unsorted = new int [] {1, 1, 1, 2, 2};
+        int [] unsorted = new int [] {6, 1, 2, 0, 2};
         mergeSort(unsorted);
 
         System.out.println(Arrays.toString(unsorted));
