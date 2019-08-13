@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class MarkAndToys {
 
     // Complete the maximumToys function below.
+    // This algorithm has a time complexity O(nlogn) due to the sort operation
     static int maximumToys(int[] prices, int k) {
         Arrays.sort(prices);
         int accum = 0;
