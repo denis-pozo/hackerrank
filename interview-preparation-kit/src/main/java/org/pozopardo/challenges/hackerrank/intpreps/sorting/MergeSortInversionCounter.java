@@ -11,6 +11,7 @@ import java.util.regex.*;
 public class MergeSortInversionCounter {
 
     // Complete the countInversions function below.
+    // This algorithm has a time complexity O(2^n)
     static long countInversions(int[] arr) {
         int [] temp = new int [arr.length];
         int leftStart = 0;
