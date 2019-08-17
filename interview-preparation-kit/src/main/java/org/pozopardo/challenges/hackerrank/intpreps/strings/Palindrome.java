@@ -13,19 +13,50 @@ public class Palindrome {
     // Complete the substrCount function below.
     static long substrCount(int n, String s) {
         char [] sArray = s.toCharArray();
-        int count = n;
+        int count = 0;
 
-        for ( int i = 0 ; i < n-1 ; i ++) {
-            if(sArray[i] == sArray[i+1]) count++;
+        for(int length = 1 ; length <= n ; length++) {
+            count += countPalindromes(sArray, length);
         }
 
         return count;
     }
 
+    private static int countPalindromes(char[] sArray, int length) {
+        if (length == 1) return sArray.length;
+
+        int count = 0;
+        Deque<Character> list = new LinkedList<>();
+        int i;
+        for(i = 0 ; i < length ; i++) {
+            list.add(sArray[i]);
+        }
+        if(isSpecial(list)) count++;
+        if(sArray.length == length) return count;
+
+        do {
+            list.add(sArray[i++]);
+            list.removeFirst();
+            if(isSpecial(list)) count++;
+        } while (i < sArray.length);
+
+        return count;
+    }
+
+    private static boolean isSpecial(Deque<Character> subString) {
+        Deque<Character> copy = new LinkedList<>(subString);
+        char first = copy.getFirst();
+        while(copy.size() > 1) {
+            if (copy.removeFirst() != first || copy.removeLast() != first) return false;
+        }
+
+        return true;
+    }
+
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int n = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
