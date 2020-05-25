@@ -17,9 +17,6 @@ public class BitSetOperatorTest {
 
     @Test
     public void expectedResultsFromMatchShouldMatchReal(){
-
-        int count = 1;
-
         InputStream inputTest = getClass().getResourceAsStream(INPUT_FILE);
         InputStream inputResult = getClass().getResourceAsStream(OUTPUT_FILE);
 

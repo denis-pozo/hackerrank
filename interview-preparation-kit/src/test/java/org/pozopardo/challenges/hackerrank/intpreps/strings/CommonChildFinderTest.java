@@ -3,7 +3,12 @@ package org.pozopardo.challenges.hackerrank.intpreps.strings;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import junitparams.JUnitParamsRunner;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import java.io.InputStream;
+import java.util.Scanner;
 
 public class CommonChildFinderTest {
 
@@ -54,5 +59,28 @@ public class CommonChildFinderTest {
         String s2 = "FBDAMN";
 
         assertEquals(2, CommonChildFinder.commonChild(s2, s1));
+    }
+
+    @Test
+    public void testCase1FromSite() {
+        String s1 = "WEWOUCUIDGCGTRMEZEPXZFEJWISRSBBSYXAYDFEJJDLEBVHHKS";
+        String s2 = "FDAGCXGKCTKWNECHMRXZWMLRYUCOCZHJRRJBOAJOQJZZVUYXIC";
+
+        assertEquals(15, CommonChildFinder.commonChild(s1, s2));
+    }
+
+    private static String CASE9_FILE = "/common-child-case9.txt";
+
+    @Test
+    public void testCase9FromSite() {
+        InputStream inputStream = getClass().getResourceAsStream(CASE9_FILE);
+        Scanner input = new Scanner(inputStream);
+        String s1 = input.nextLine();
+        String s2 = input.nextLine();
+        int expectedResult = 1618;
+
+        assertEquals(expectedResult, CommonChildFinder.commonChild(s1, s2));
+
+        input.close();
     }
 }
