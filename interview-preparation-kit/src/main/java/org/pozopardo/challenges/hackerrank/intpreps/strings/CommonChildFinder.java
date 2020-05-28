@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class CommonChildFinder {
     // Complete the commonChild function below.
-    // Problem known as Longest Common Subsequence LCS. O(n^2)
+    // Problem known as Longest Common Subsequence LCS. O(n*m), in this specific example O(n^2)
     static int commonChild(String s1, String s2) {
         if(s1.equals(s2)) return s1.length();
 
