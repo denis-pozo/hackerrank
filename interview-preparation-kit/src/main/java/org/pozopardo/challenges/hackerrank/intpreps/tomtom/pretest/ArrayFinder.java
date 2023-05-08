@@ -4,7 +4,7 @@ import java.util.*;
 
 public class ArrayFinder {
 
-    // Time Complexity O(n) or O(n)log(n))
+    // Time Complexity O(n) or O(nlog(n))
     public int solution(int[] A) {
         // write your code in Java SE 8
         List<Integer> a = new ArrayList<>();
